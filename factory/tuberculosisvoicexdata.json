@@ -1,0 +1,9 @@
+{
+	"name": "tuberculosisvoicexdata",
+	"location": "southafricanorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "88f935d9-f875-4932-854a-33bf4316b249",
+		"tenantId": "5e02eeb2-8696-4f26-8fb4-cc85556e3af7"
+	}
+}

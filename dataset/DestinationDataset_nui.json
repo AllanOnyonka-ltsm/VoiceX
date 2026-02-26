@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_nui",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "TBscreen_Dataset.zip",
+				"container": "tbscreen-dataset"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
