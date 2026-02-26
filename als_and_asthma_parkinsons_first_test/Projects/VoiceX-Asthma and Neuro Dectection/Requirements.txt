@@ -1,0 +1,35 @@
+# Core Streamlit and web components
+streamlit>=1.28.0
+streamlit-webrtc>=0.47.0
+audio-recorder-streamlit>=0.0.8
+
+# Data processing and scientific computing
+numpy>=1.24.0
+pandas>=1.5.0
+scikit-learn>=1.3.0
+
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.0
+noisereduce>=3.0.0
+
+# Visualization
+plotly>=5.15.0
+
+# Image processing
+Pillow>=9.5.0
+
+# Machine Learning - PyTorch
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# System and utility packages
+setuptools>=65.0.0
+wheel>=0.38.0
+
+# Audio codec support (may be needed for librosa)
+ffmpeg-python>=0.2.0
+
+# For better audio handling on some systems
+pyaudio>=0.2.11
