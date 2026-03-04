@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 14% 97%;
+    --foreground: 220 14% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 5%;
+    --primary: 114 100% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 97%;
+    --secondary-foreground: 220 14% 5%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 114 100% 32%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 114 100% 32%;
+    --radius: 1.75rem;
+  }
+
+  .dark {
+    --background: 220 14% 5%;
+    --foreground: 220 14% 97%;
+    --card: 220 14% 8%;
+    --card-foreground: 220 14% 97%;
+    --popover: 220 14% 8%;
+    --popover-foreground: 220 14% 97%;
+    --primary: 114 100% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 12%;
+    --secondary-foreground: 220 14% 97%;
+    --muted: 220 14% 15%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 114 100% 32%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 15%;
+    --input: 220 14% 15%;
+    --ring: 114 100% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', sans-serif;
+  }
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Card styles */
+.card-shadow {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Pill styles */
+.pill {
+  @apply inline-flex items-center px-4 py-1.5 rounded-full text-xs font-medium tracking-wide uppercase;
+}
+
+.pill-green {
+  @apply bg-[#11A300] text-white;
+}
+
+.pill-green-outline {
+  @apply border border-[#11A300] text-[#11A300] bg-transparent;
+}
+
+/* Section base */
+.section-pinned {
+  @apply w-screen h-screen relative overflow-hidden;
+}
+
+/* Typography */
+.heading-xl {
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.heading-lg {
+  font-size: clamp(34px, 3.6vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.heading-md {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Image slow zoom animation */
+@keyframes slowZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.slow-zoom {
+  animation: slowZoom 8s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 13, 16, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(11, 13, 16, 0.3);
+}
