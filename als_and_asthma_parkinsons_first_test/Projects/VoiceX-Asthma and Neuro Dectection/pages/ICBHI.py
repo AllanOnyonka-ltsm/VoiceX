@@ -24,6 +24,7 @@ import torchvision.transforms as transforms
 import threading
 from collections import deque
 import gc
+from pathlib import Path
 st.title("Breath Sound Classification")
 st.write("Record your breath sound to get a classification.")
 
@@ -34,6 +35,7 @@ N_FFT = 1024  # Reduced from 2048
 HOP = 256   # Reduced from 512
 FMIN, FMAX = 20, 8000
 IMG_SIZE = (224, 224)
+MODEL_PATH = Path(__file__).resolve().parents[1] / "Models" / "best_model.pth"
 
 # Cache compiled functions and models
 @st.cache_resource
@@ -47,7 +49,7 @@ def load_model():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     try:
-        model.load_state_dict(torch.load("/workspaces/Projects/VoiceX/Models/best_model.pth", map_location=device))
+        model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
         model.to(device)
         model.eval()
         
@@ -60,7 +62,7 @@ def load_model():
                 
         return model, device
     except FileNotFoundError:
-        st.error("Error: Model file 'best_model.pth' not found.")
+        st.error(f"Error: Model file not found at {MODEL_PATH}")
         return None, device
     except Exception as e:
         st.error(f"Error loading model: {e}")

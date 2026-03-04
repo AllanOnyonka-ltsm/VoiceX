@@ -1,0 +1,82 @@
+[package]
+name = "voicex-edge"
+version = "0.1.0"
+edition = "2021"
+authors = ["VoiceX Health Technologies"]
+description = "Offline-first AI audio triage for TB risk and voice pathology detection"
+license = "MIT"
+repository = "https://github.com/voicex-health/voicex-edge"
+
+[dependencies]
+# Audio processing
+hound = "3.5"
+rustfft = "6.1"
+realfft = "3.3"
+num-complex = "0.4"
+
+# ML Inference - ONNX Runtime for edge
+ton = "0.22"
+ort = { version = "2.0", features = ["ndarray"] }
+ndarray = { version = "0.15", features = ["rayon"] }
+
+# Feature extraction
+mel_spec = "0.2"
+libm = "0.2"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# GPS/Location
+gps = "0.4"
+
+# Database (SQLite for local storage)
+rusqlite = { version = "0.30", features = ["bundled", "chrono"] }
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# WASM bindings (for web integration)
+wasm-bindgen = { version = "0.2", optional = true }
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true }
+
+# CLI
+clap = { version = "4.4", features = ["derive"], optional = true }
+
+[features]
+default = ["cli"]
+cli = ["clap"]
+wasm = ["wasm-bindgen", "js-sys", "web-sys"]
+
+[[bin]]
+name = "voicex"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[lib]
+name = "voicex_edge"
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.wasm]
+inherits = "release"
+opt-level = "z"
+lto = true
